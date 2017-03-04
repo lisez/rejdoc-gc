@@ -6,7 +6,7 @@
   "description": "將司法院文書系統產生格式重新調整",
   "background": {
     "persistent": false,
-    "scripts": ["script.js", "components/getReJDocString.uni.min.js", "components/executeCopy.js", "components/getPlainTextHTML.js", "components/executeDL.js"]
+    "scripts": ["script.js", "lib/getReJDocString.uni.min.js", "lib/executeCopy.js", "lib/getPlainTextHTML.js", "lib/executeDL.js"]
   },
   "permissions" : ["contextMenus", "activeTab", "tabs", "<all_urls>"]
 }
