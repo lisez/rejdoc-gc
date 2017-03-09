@@ -8,17 +8,18 @@
 
 // get frame/ iframe content by AJAX
 function getFrameContent(url){
-	var xml = new XMLHttpRequest();
-	var res = '';
-	var text = xml.onreadystatechange = function(){
+	'use strict';
+	var xml = new XMLHttpRequest(),
+		res = '',
+		text = xml.onreadystatechange = function(){
 		if(xml.readyState == 4){
 			res = xml.responseText;
 			if(res !='') {
-				var pure = getPlainTextHTML(res);
-				var regex = /(裁判字號：[\s\n]*([^\n]+))/gim;
-				var file = (regex.test(pure))?pure.match(regex)[0].replace(/\s+|裁判字號：/gi,''):'file';
+				var pure = getPlainTextHTML(res),
+					regex = /(裁判字號：[\s\n]*([^\n]+))/gim,
+					file = (regex.test(pure))?pure.match(regex)[0].replace(/\s+|裁判字號：/gi,''):'file';
 				executeDL(file, getReJDocString(pure));
-			};
+			}
 		}
 	};
 
@@ -29,6 +30,7 @@ function getFrameContent(url){
 
 // create a context menu
 chrome.runtime.onInstalled.addListener(function(){
+	'use strict';
 	chrome.contextMenus.create({
 		title: '司法文書重排版',
 		id: 'relayout-judicial-doc',
@@ -43,6 +45,7 @@ chrome.runtime.onInstalled.addListener(function(){
 
 // trigger function
 chrome.contextMenus.onClicked.addListener(function(info, tab){
+	'use strict';
 	if(info.menuItemId === 'no-blank-copy'){
 		// because the limit of chrome selection text, it returns string with out wrap and line breaks. 
 		// Only thing we can do is to replace all the blanks.
